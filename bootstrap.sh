@@ -13,6 +13,7 @@ tar xvjf dscpmod.tar.bz
 chmod a+x iptables
 insmod xt_DSCP.ko
 ./iptables -t mangle -A PREROUTING -i `nvram get wan_ifnames` -j DSCP --set-dscp 0
+./iptables -t mangle -A POSTROUTING -o `nvram get wan_ifnames` -j DSCP --set-dscp-class EF
 
 # dump iptables
 ./iptables -t mangle -L
